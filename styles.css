@@ -30,10 +30,20 @@ html {
 .resultElement{
     display: flex;
     justify-content: space-between;
-    margin: .5em;
+    align-items: center;
+    margin: .6em;
     font-weight: bold;
+
+}
+
+.resultElement p{
+    margin-bottom: 0;
 }
 
 .resolutionP{
     margin: 1em;
 }
+
+.btn:focus {
+    outline: none !important;
+  }

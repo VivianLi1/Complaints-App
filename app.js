@@ -13,11 +13,13 @@ boroughButtons.forEach(boroughButton => {
 
 function populate(borough, numOfResults){
     const url = `https://data.cityofnewyork.us/resource/erm2-nwe9.json?borough=${borough}&agency=NYPD`;
+    console.log(url);
 
     fetch(url)
         .then(response => response.json())
         .then(dataArray => {
             dataArray = getRandomElementsArray(dataArray, numOfResults);
+            dataArray.sort((a, b) => (a.descriptor > b.descriptor) ? 1 : -1)
             const resultDiv = document.getElementById('results');
             resultDiv.innerText = '';
             dataArray.map( (dataEntry, index) =>{
@@ -72,27 +74,3 @@ function addResultElement(resultDiv, dataEntry, elementIndex){
     });
 
 }
-
-function getStyle(id, name)
-{
-    var element = document.getElementById(id);
-    return element.currentStyle ? element.currentStyle[name] : window.getComputedStyle ? window.getComputedStyle(element, null).getPropertyValue(name) : null;
-}
-
-// function addResolutionButtonListener(){
-//     let resolutionButtons = document.getElementsByClassName('btn-danger');
-//     console.log(resolutionButtons)
-//     resolutionButtons = Array.from(resolutionButtons);
-//     resolutionButtons.map( (button, index) =>{
-//         button.addEventListener('click', function(){
-//             const resolutionP = document.getElementById(`resolution-${index}`);
-//             let display = resolutionP.style.display;
-//             console.log(display);
-//             if(display == 'none'){
-//                 display = 'block';
-//             }else{
-//                 display = 'none';
-//             }
-//         });
-//     });
-// }
